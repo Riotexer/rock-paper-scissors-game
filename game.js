@@ -5,9 +5,8 @@ function getComputerChoice(choices) {
     return choices[index];
 }
 
-let computerSelection = getComputerChoice(choices);
-let playerSelection = "rock";
-playerSelection = playerSelection.toLowerCase();
+let win = 0;
+let loose = 0;
 
 function playRound(playerSelection, computerSelection){
     if (playerSelection==="rock"){
@@ -15,9 +14,11 @@ function playRound(playerSelection, computerSelection){
             return ("It's a draw");
 
         }else if (computerSelection==="paper"){
+            loose=+1;
             return ("You Loose! Paper beats Rock");
 
         }else {
+            win=+1;
             return ("You Win! Rock beats Scissors");
         }
 
@@ -26,9 +27,11 @@ function playRound(playerSelection, computerSelection){
             return ("It's a draw");
 
         }else if (computerSelection==="rock"){
+            win=+1;
             return ("You Win! Paper beats Rock");
 
         }else {
+            loose=+1;
             return ("You Loose! Scissors beats Paper");
         }
 
@@ -37,12 +40,33 @@ function playRound(playerSelection, computerSelection){
             return ("It's a draw");
 
         }else if (computerSelection==="rock"){
+            loose=+1;
             return ("You Loose! Rock beats Scissors");
 
         }else {
+            win=+1;
             return ("You Win! Scissors beats Paper");
         }
     }
 }
 
-console.log(playRound(playerSelection, computerSelection));
+function score(){
+    if (win>loose){
+        return("You Won the game!");
+
+    }else {
+        return("The computer Won the game!");
+    }
+}
+
+function game(){
+    for (let i = 0; i < 5; i++){
+        let playerSelection = prompt("Choose between Rock, Paper or Scissors: ");
+        playerSelection = playerSelection.toLowerCase();
+        let computerSelection = getComputerChoice(choices);
+        console.log(playRound(playerSelection, computerSelection));
+    }
+    console.log(score());
+}
+
+console.log(game());
